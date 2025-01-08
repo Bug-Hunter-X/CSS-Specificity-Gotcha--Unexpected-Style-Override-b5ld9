@@ -1,0 +1,22 @@
+The following CSS code snippet demonstrates an uncommon error related to the specificity of CSS selectors and the cascading nature of stylesheets.  The unexpected behavior arises from the way the browser handles conflicting styles when selectors have equal specificity. 
+```css
+.container {
+  width: 200px;
+  background-color: lightblue;
+}
+
+.container div {
+  width: 100px;
+  background-color: lightgreen;
+}
+
+.container div.special {
+  width: 50px;
+  background-color: lightcoral; /*This style is expected to be applied*/
+}
+
+.container div {
+  background-color: lightpink; /*This style unexpectedly overrides .container div.special*/
+}
+```
+In this code, the last `background-color: lightpink` declaration will override the background color specified for `.container div.special` because both have equal specificity, and the later declaration takes precedence due to the cascading order.  This can be subtle and difficult to debug because the conflicting styles are seemingly unrelated.
